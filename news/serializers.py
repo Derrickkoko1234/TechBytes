@@ -18,6 +18,12 @@ class CommentSerializer(serializers.ModelSerializer):
         return super(CommentSerializer, self).to_representation(instance)
     
 
+class MicroCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+    
+
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like

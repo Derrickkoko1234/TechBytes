@@ -54,8 +54,9 @@ def get_article_details(request, slug):
         context['comments_count'] = comments_count
 
         comments = Comment.objects.filter(
-            article=article).order_by('date_time_created')
-        context['comments'] = comments
+            article=article).order_by('date_created')
+        comments_serializer = MicroCommentSerializer(comments, many=True)
+        context['comments'] = comments_serializer.data
 
         return Response(context, status.HTTP_200_OK)
 
@@ -107,4 +108,3 @@ def create_like(request):
                 like.delete()
                 context['message'] = "Like removed successfully"
                 return Response(context, status.HTTP_200_OK)
-
