@@ -61,7 +61,7 @@ def login_view(request):
     password = request.data['password']
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
+        # login(request, user)
         token, _ = Token.objects.get_or_create(user=user)
         context['message'] = 'Login successful'
         context['token'] = token.key
